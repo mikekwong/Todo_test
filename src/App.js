@@ -21,7 +21,7 @@ export default class App extends Component {
     this.setState(
       // If there is data previously saved in local storage
       data !== null
-        ? // retrieve it and parse it back to JSON
+        ? // retrieve it and parse it back to JSON format
         JSON.parse(data)
         : {
           userName: 'Adam',
@@ -42,7 +42,9 @@ export default class App extends Component {
         {
           todoItems: [...this.state.todoItems, { action: task, done: false }]
         },
-        // save to local storage and call it 'todos', turn JSON object into strings
+        // For persistent data store if navigating away from page
+        // save to local storage if a new todo item is created and call it 'todos'
+        // local storage can only store string values, so serialize the datat objects to JSON format
         () => localStorage.setItem('todos', JSON.stringify(this.state))
       )
     }
