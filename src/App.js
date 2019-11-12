@@ -19,8 +19,10 @@ export default class App extends Component {
   componentDidMount () {
     let data = localStorage.getItem('todos')
     this.setState(
+      // If there is data previously saved in local storage
       data !== null
-        ? JSON.parse(data)
+        ? // retrieve it and parse it back to JSON
+        JSON.parse(data)
         : {
           userName: 'Adam',
           todoItems: [
@@ -40,6 +42,7 @@ export default class App extends Component {
         {
           todoItems: [...this.state.todoItems, { action: task, done: false }]
         },
+        // save to local storage and call it 'todos', turn JSON object into strings
         () => localStorage.setItem('todos', JSON.stringify(this.state))
       )
     }
